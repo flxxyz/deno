@@ -21,4 +21,24 @@ export class RegexRedirects {
     }
 }
 
+export type RedirectDefaultOptions = { headers?: any, status: number };
+
+export function redirectDefault(url: string, { headers, status = 307 }: RedirectDefaultOptions) {
+    const html = `<HTML><HEAD>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<TITLE>Redirecting</TITLE>
+<META HTTP-EQUIV="refresh" content="1; url=${url}">
+</HEAD>
+<BODY onLoad="location.replace('${url}'+document.location.hash)">
+Redirecting you to ${url}</BODY></HTML>`;
+
+    return new Response(html, {
+        status,
+        headers: new Headers({
+            location: url,
+            ...headers
+        }),
+    });
+}
+
 export const regexRedirects = new RegexRedirects();
