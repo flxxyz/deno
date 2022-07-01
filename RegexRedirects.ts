@@ -23,7 +23,7 @@ export class RegexRedirects {
 
 export type RedirectDefaultOptions = { headers?: any, status: number };
 
-export function redirectDefault(url: string, { headers, status = 307 }: RedirectDefaultOptions) {
+export function redirectDefault(url: string, options?: RedirectDefaultOptions) {
     const html = `<HTML><HEAD>
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
 <TITLE>Redirecting</TITLE>
@@ -33,10 +33,10 @@ export function redirectDefault(url: string, { headers, status = 307 }: Redirect
 Redirecting you to ${url}</BODY></HTML>`;
 
     return new Response(html, {
-        status,
+        status: options?.status || 307,
         headers: new Headers({
             location: url,
-            ...headers
+            ...options?.headers
         }),
     });
 }
