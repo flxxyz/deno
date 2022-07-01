@@ -20,3 +20,5 @@ export class RegexRedirects {
         return false;
     }
 }
+
+export const regexRedirects = new RegexRedirects();
