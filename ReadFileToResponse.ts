@@ -1,5 +1,6 @@
 import { readFile } from "https://deno.land/std@0.152.0/node/fs/promises.ts";
 import { join, extname } from "https://deno.land/std@0.152.0/path/posix.ts";
+import { Status } from "https://deno.land/std@0.152.0/http/mod.ts";
 
 export const DEFAULT_MIME_TYPE = 'application/octet-stream';
 
