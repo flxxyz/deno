@@ -23,7 +23,7 @@ export const excludeMimeTypes = [
 ];
 
 export async function ReadFileToResponse(url: string, dir: string) {
-    let pathname = new URL(url).pathname;
+    let pathname = new URL(decodeURIComponent(url)).pathname;
     if (pathname === '/') {
       pathname = 'index.html';
     }
