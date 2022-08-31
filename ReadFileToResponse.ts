@@ -13,6 +13,7 @@ export const mimeTypes = {
   '.svg': 'image/svg+xml',
   '.woff': 'application/x-font-woff',
   '.woff2': 'font/woff2',
+  '.ttf': 'font/ttf',
   '.txt': 'text/plain',
   '.ico': 'image/x-icon',
 };
