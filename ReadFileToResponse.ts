@@ -23,6 +23,9 @@ export const excludeMimeTypes = [
   '.map',
 ];
 
+// 单位 s
+const cacheMaxAge = 60 * 60 * 24 * 14;
+
 export async function ReadFileToResponse(url: string, dir: string) {
     let pathname = new URL(decodeURIComponent(url)).pathname;
     if (pathname === '/') {
@@ -38,7 +41,11 @@ export async function ReadFileToResponse(url: string, dir: string) {
     const mimeType = mimeTypes[ext] || DEFAULT_MIME_TYPE;
     const file = join(dir, pathname);
     const content = await readFile(file);
+    
     return new Response(content, {
-      headers: { "Content-Type": mimeType },
+      headers: {
+        "Content-Type": mimeType,
+        "Cache-Control": `max-age=${cacheMaxAge}`
+      },
     });
 }
